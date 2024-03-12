@@ -95,8 +95,22 @@ public class ProductDAO {
 			System.out.print("\nInvalid Choice");
 			break;
 		}
+	
 		
+	}
+	
+	public void deleteProduct(int prod_id) throws SQLException, ClassNotFoundException {
+		ConnectionManager conm = new ConnectionManager();
+		Connection con = conm.establishConnection();
 		
+		String query = "DELETE FROM products WHERE product_id=?";
+		PreparedStatement ps;
+		
+		ps = con.prepareStatement(query);
+		ps.setInt(1, prod_id);
+		ps.executeUpdate();
+		
+		System.out.print("\nProduct ID " + prod_id + " has been deleted Successfully");
 	}
 	
 }

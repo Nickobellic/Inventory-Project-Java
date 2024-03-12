@@ -68,7 +68,8 @@ public class Main {
 		System.out.print("\n1. Add Product");
 		System.out.print("\n2. Display Product");
 		System.out.print("\n3. Update Product");
-		System.out.println("\n4. Logout");
+		System.out.print("\n4. Delete Product");
+		System.out.println("\n5. Logout");
 		System.out.println("****************************************************");
 		
 		int adminChoiceOption = sc.nextInt();
@@ -86,6 +87,10 @@ public class Main {
 			return true;
 			
 		case 4:
+			deleteProduct(sc, prod, pdao);
+			return true;
+			
+		case 5:
 			System.out.print("\nAdmin logged out");
 			return false;
 		
@@ -193,6 +198,15 @@ public class Main {
 		adminChoice(sc, prod, pdao);
 		
 
+	}
+	
+	public void deleteProduct(Scanner sc, Product prod, ProductDAO pdao) throws ClassNotFoundException, SQLException {
+		System.out.println("\nEnter the Product ID : ");
+		int productID = sc.nextInt();
+		
+		pdao.deleteProduct(productID);
+		
+		adminChoice(sc, prod, pdao);
 	}
 	
 	public boolean agentChoice(Scanner sc, Product prod, ProductDAO pdao) throws ClassNotFoundException, SQLException {		// Function that presents the Agent's available choices
